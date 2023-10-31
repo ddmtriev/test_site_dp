@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div>
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'error' %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ message }}
+                    </div>
+                {% else %}
+                    <div class="alert alert-success" role="alert">
+                        {{ message }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <div>
+        {% for question in questions %}
+        <p>
+            <p><h2>Название вопроса: {{question.question_title}}</h2></p>
+            <p>Текст вопроса: {{question.question_text}}</p>
+        </p>
+        <a href="{% url 'question_view' pk=question.id %}">Пройти тест</a>
+        {% endfor %}
+
+    </div>
+
+
+</body>
+</html>
